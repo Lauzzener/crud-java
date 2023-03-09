@@ -18,6 +18,13 @@ public class Main {
 		contato.setDataCadastro(new Date());
 		
 		contatoDao.save(contato);
+		
+		//Visualização dos registros do banco de dados.
+		for (Contato c : contatoDao.getContatos()) {
+			System.out.print("Nome: " + c.getNome());
+			System.out.print(" | Idade: " + c.getIdade());
+			System.out.println(" | Data: " + c.getDataCadastro());
+		}
 	}
 
 }
