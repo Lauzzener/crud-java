@@ -22,7 +22,7 @@ public class Main {
 			System.out.println("1 - Criar\n2 - Ler\n3 - Atualizar\n4 - Deletar\n0 - Sair");
 			System.out.print("Digite o numero correspondente a sua ação: ");
 
-			valor = Integer.parseInt(scanner.next());
+			valor = Integer.parseInt(scanner.nextLine());
 
 			switch (valor) {
 				case 1:
@@ -82,21 +82,21 @@ public class Main {
 
 	public static String lerNome(Scanner scanner) {
 		System.out.print("Digite seu nome: ");
-		String nome = scanner.next();
+		String nome = scanner.nextLine();
 
 		return nome;
 	}
 
 	public static int lerIdade(Scanner scanner) {
 		System.out.print("Digite sua idade: ");
-		int idade = Integer.parseInt(scanner.next());
+		int idade = Integer.parseInt(scanner.nextLine());
 
 		return idade;
 	}
 
 	public static int lerId(Scanner scanner) {
 		System.out.print("Digite o ID: ");
-		int id = Integer.parseInt(scanner.next());
+		int id = Integer.parseInt(scanner.nextLine());
 
 		return id;
 	}
