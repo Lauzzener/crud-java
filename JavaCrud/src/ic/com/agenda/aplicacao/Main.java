@@ -19,7 +19,7 @@ public class Main {
 		int valor;
 		boolean bool = true;
 		while (bool) {
-			System.out.println("1 - Criar\n2 - Ler\n3 - Atualizar\n0 - Sair");
+			System.out.println("1 - Criar\n2 - Ler\n3 - Atualizar\n4 - Deletar\n0 - Sair");
 			System.out.print("Digite o numero correspondente a sua ação: ");
 
 			valor = Integer.parseInt(scanner.next());
@@ -38,6 +38,10 @@ public class Main {
 					nome = lerNome(scanner);
 					idade = lerIdade(scanner);
 					atualizar(contatoDao, id, nome, idade);
+					break;
+				case 4:
+					id = lerId(scanner);
+					deletar(contatoDao, id);
 					break;
 				case 0:
 					bool = false;
@@ -70,6 +74,10 @@ public class Main {
 
 	public static void atualizar(ContatoDAO contatoDAO, int id, String nome, int idade) {
 		contatoDAO.update(id, nome, idade);
+	}
+
+	public static void deletar(ContatoDAO contatoDAO, int id) {
+		contatoDAO.delete(id);
 	}
 
 	public static String lerNome(Scanner scanner) {
