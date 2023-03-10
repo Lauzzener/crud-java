@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import com.mysql.jdbc.PreparedStatement;
 
@@ -108,21 +107,8 @@ public class ContatoDAO {
 
 	}
 
-	public void update(Contato contato) {
-		Scanner scanner = new Scanner(System.in);
-
-		System.out.println("Digite o ID da row que deseja atualizar: ");
-		int id = Integer.parseInt(scanner.nextLine());
-
-		System.out.print("Digite o novo nome: ");
-		String nome = scanner.nextLine();
-
-		System.out.println("Digite a nova idade: ");
-		int idade = Integer.parseInt(scanner.nextLine());
-
-		scanner.close();
-
-		String sqlNome = String.format("UPDATE contatos SET nome = %s WHERE id = %d", nome, id);
+	public void update(int id, String nome, int idade) {
+		String sqlNome = String.format("UPDATE contatos SET nome = \"%s\" WHERE id = %d", nome, id);
 		String sqlIdade = String.format("UPDATE contatos SET idade = %d WHERE id = %d", idade, id);
 
 		Connection conn = null;
