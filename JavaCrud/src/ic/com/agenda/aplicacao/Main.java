@@ -12,10 +12,6 @@ public class Main {
 		Scanner scanner = new Scanner(System.in);
 		ContatoDAO contatoDao = new ContatoDAO();
 
-		int id;
-		String nome;
-		int idade;
-
 		int valor;
 		boolean bool = true;
 		while (bool) {
@@ -26,22 +22,17 @@ public class Main {
 
 			switch (valor) {
 				case 1:
-					nome = lerNome(scanner);
-					idade = lerIdade(scanner);
-					salvar(contatoDao, nome, idade);
+
+					salvar(contatoDao, scanner);
 					break;
 				case 2:
 					ler(contatoDao);
 					break;
 				case 3:
-					nome = lerNome(scanner);
-					idade = lerIdade(scanner);
-					id = lerId(scanner);
-					atualizar(contatoDao, nome, idade, id);
+					atualizar(contatoDao, scanner);
 					break;
-				case 4:
-					id = lerId(scanner);
-					deletar(contatoDao, id);
+				case 4:					
+					deletar(contatoDao, scanner);
 					break;
 				case 0:
 					bool = false;
@@ -63,7 +54,10 @@ public class Main {
 		}
 	}
 
-	public static void salvar(ContatoDAO contatoDAO, String nome, int idade) throws Exception {
+	public static void salvar(ContatoDAO contatoDAO, Scanner scan) throws Exception {
+		String nome = lerNome(scan);
+		int idade = lerIdade(scan);
+
 		Contato contato = new Contato();
 		contato.setNome(nome);
 		contato.setIdade(idade);
@@ -72,7 +66,11 @@ public class Main {
 		contatoDAO.save(contato);
 	}
 
-	public static void atualizar(ContatoDAO contatoDAO, String nome, int idade, int id) {
+	public static void atualizar(ContatoDAO contatoDAO, Scanner scan) {
+		String nome = lerNome(scan);
+		int idade = lerIdade(scan);
+		int id = lerId(scan);
+
 		Contato contato = new Contato();
 		contato.setNome(nome);
 		contato.setIdade(idade);
@@ -82,7 +80,9 @@ public class Main {
 		contatoDAO.update(contato);
 	}
 
-	public static void deletar(ContatoDAO contatoDAO, int id) {
+	public static void deletar(ContatoDAO contatoDAO, Scanner scan) {
+		int id = lerId(scan);
+		
 		Contato contato = new Contato();
 		contato.setId(id);
 
