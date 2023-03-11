@@ -98,14 +98,14 @@ public class Main {
 
 	public static int lerIdade(Scanner scanner) {
 		System.out.print("Digite sua idade: ");
-		int idade = Integer.parseInt(scanner.nextLine());
+		int idade = scanner.nextInt();
 
 		return idade;
 	}
 
 	public static int lerId(Scanner scanner) {
 		System.out.print("Digite o ID: ");
-		int id = Integer.parseInt(scanner.nextLine());
+		int id = scanner.nextInt();
 
 		return id;
 	}
