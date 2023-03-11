@@ -107,20 +107,22 @@ public class ContatoDAO {
 
 	}
 
-	public void update(int id, String nome, int idade) {
-		String sqlNome = String.format("UPDATE contatos SET nome = \"%s\" WHERE id = %d", nome, id);
-		String sqlIdade = String.format("UPDATE contatos SET idade = %d WHERE id = %d", idade, id);
-
+	public void update(Contato contato) {
+		String sql = "UPDATE contatos SET nome = ?, idade = ?, datacadastro = ? WHERE id = ?";
+		
 		Connection conn = null;
 		PreparedStatement pstm = null;
 
 		try {
 			conn = ConnectionFactory.createConnectionToMySQL();
 
-			pstm = (PreparedStatement) conn.prepareStatement(sqlNome);
-			pstm.execute();
+			pstm = (PreparedStatement) conn.prepareStatement(sql);
 
-			pstm = (PreparedStatement) conn.prepareStatement(sqlIdade);
+			pstm.setString(1, contato.getNome());
+			pstm.setInt(2, contato.getIdade());
+			pstm.setDate(3, new Date(contato.getDataCadastro().getTime()));
+			pstm.setInt(4, contato.getId());
+
 			pstm.execute();
 
 		} catch (Exception e) {
@@ -142,8 +144,8 @@ public class ContatoDAO {
 
 	}
 
-	public void delete(int id) {
-		String sql = String.format("DELETE FROM contatos WHERE id = %d", id);
+	public void delete(Contato contato) {
+		String sql = "DELETE FROM contatos WHERE id = ?";
 
 		Connection conn = null;
 		PreparedStatement pstm = null;
@@ -152,6 +154,9 @@ public class ContatoDAO {
 			conn = ConnectionFactory.createConnectionToMySQL();
 
 			pstm = (PreparedStatement) conn.prepareStatement(sql);
+
+			pstm.setInt(1, contato.getId());
+
 			pstm.execute();
 
 		} catch (Exception e) {

@@ -34,10 +34,10 @@ public class Main {
 					ler(contatoDao);
 					break;
 				case 3:
-					id = lerId(scanner);
 					nome = lerNome(scanner);
 					idade = lerIdade(scanner);
-					atualizar(contatoDao, id, nome, idade);
+					id = lerId(scanner);
+					atualizar(contatoDao, nome, idade, id);
 					break;
 				case 4:
 					id = lerId(scanner);
@@ -72,12 +72,21 @@ public class Main {
 		contatoDAO.save(contato);
 	}
 
-	public static void atualizar(ContatoDAO contatoDAO, int id, String nome, int idade) {
-		contatoDAO.update(id, nome, idade);
+	public static void atualizar(ContatoDAO contatoDAO, String nome, int idade, int id) {
+		Contato contato = new Contato();
+		contato.setNome(nome);
+		contato.setIdade(idade);
+		contato.setDataCadastro(new Date());
+		contato.setId(id);
+
+		contatoDAO.update(contato);
 	}
 
 	public static void deletar(ContatoDAO contatoDAO, int id) {
-		contatoDAO.delete(id);
+		Contato contato = new Contato();
+		contato.setId(id);
+
+		contatoDAO.delete(contato);
 	}
 
 	public static String lerNome(Scanner scanner) {
